@@ -398,6 +398,7 @@ name = "liveframe-rs"
 version = "0.1.0"
 dependencies = [
  "gio",
+ "glib",
  "gtk",
 ]
 

@@ -10,7 +10,7 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="menubutton-window">
             <property name="label" translatable="yes">Window</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -23,7 +23,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="menubutton-photo">
             <property name="label" translatable="yes">Photo</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -47,7 +47,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="menubutton-weather">
             <property name="label" translatable="yes">Weather</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -60,7 +60,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="menubutton-suntimes">
             <property name="label" translatable="yes">Sunrise/Sunset</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -84,7 +84,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="menubutton-updates">
             <property name="label" translatable="yes">Updates</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -122,14 +122,25 @@
             <property name="margin_top">12</property>
             <property name="vexpand">True</property>
             <child>
-              <object class="GtkImage">
+              <object class="GtkDrawingArea" id="window-area">
+                <property name="name">window-area</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixbuf">liveframe.png</property>
               </object>
               <packing>
                 <property name="name">page0</property>
                 <property name="title" translatable="yes">page0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="photo-area">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="name">page1</property>
+                <property name="title" translatable="yes">page1</property>
+                <property name="position">1</property>
               </packing>
             </child>
           </object>
