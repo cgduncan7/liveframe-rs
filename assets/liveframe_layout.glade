@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkPopover" id="popover1">
+  <object class="GtkPopover" id="popover-menu">
     <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
@@ -119,7 +119,7 @@
           <object class="GtkStack" id="view-stack">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">12</property>
+            <property name="hexpand">False</property>
             <property name="vexpand">True</property>
             <child>
               <object class="GtkDrawingArea" id="window-area">
@@ -133,9 +133,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkDrawingArea" id="photo-area">
+              <object class="GtkBox" id="photo-box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <placeholder/>
+                </child>
               </object>
               <packing>
                 <property name="name">page1</property>
@@ -161,7 +167,7 @@
                 <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
                 <property name="direction">up</property>
-                <property name="popover">popover1</property>
+                <property name="popover">popover-menu</property>
                 <child>
                   <placeholder/>
                 </child>

@@ -5,6 +5,13 @@ authors = ["cgduncan7 <cgduncan7@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+gdk-pixbuf = { version = "0.9.0", features = ["v2_36_8"] }
 gio = { version = "0.9", features = ["v2_56"] }
 gtk = { version = "0.9", features = ["v3_24"] }
 glib = "0.10.3"
+image = "0.23.14"
+futures-util = "0.3.13"
+log = "0.4.14"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.11.3", features = ["blocking", "stream"] }
+url = "*"
