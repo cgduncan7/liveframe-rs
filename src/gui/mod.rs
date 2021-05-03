@@ -3,6 +3,7 @@ use glib::{Bytes, clone};
 use gtk::prelude::*;
 use url::Url;
 
+// TODO: make reusable
 fn setup_menu_buttons(builder: &gtk::Builder) {
   let view_stack: gtk::Stack = builder.get_object("view-stack").unwrap();
   let popover: gtk::Popover = builder.get_object("popover-menu").unwrap();
@@ -20,6 +21,7 @@ fn setup_menu_buttons(builder: &gtk::Builder) {
   }));
 }
 
+// TODO: spawn task to do this every minute
 fn fetch_image(builder: &gtk::Builder) {
   let photo_box: gtk::Box = builder.get_object("photo-box").unwrap();
   let url: Url = match Url::parse("http://home.collinduncan.com:54321/images/window.jpg") {
@@ -32,6 +34,7 @@ fn fetch_image(builder: &gtk::Builder) {
     .send().unwrap()
     .bytes().unwrap();
     
+  // TODO: clean this shit up
   let cursor = std::io::Cursor::new(bytes);
   let img = image::io::Reader::new(cursor).with_guessed_format().unwrap().decode().unwrap().into_rgb8();
   let resized_image = image::imageops::resize(&img, 780, 430, image::imageops::FilterType::Gaussian);
