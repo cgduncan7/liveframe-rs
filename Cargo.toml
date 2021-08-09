@@ -10,6 +10,7 @@ gio = { version = "0.9", features = ["v2_56"] }
 gtk = { version = "0.9", features = ["v3_24"] }
 glib = "0.10.3"
 image = "0.23.14"
+lazy_static = "1.4.0"
 futures-util = "0.3.13"
 log = "0.4.14"
 tokio = { version = "1", features = ["full"] }

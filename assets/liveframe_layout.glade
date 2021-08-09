@@ -122,18 +122,19 @@
             <property name="hexpand">False</property>
             <property name="vexpand">True</property>
             <child>
-              <object class="GtkDrawingArea" id="window-area">
-                <property name="name">window-area</property>
+              <object class="GtkDrawingArea" id="view-stack_window">
+                <property name="name">view-stack_window</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
               </object>
               <packing>
-                <property name="name">page0</property>
-                <property name="title" translatable="yes">page0</property>
+                <property name="name">view-stack_window</property>
+                <property name="title" translatable="yes">view-stack_window</property>
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="photo-box">
+              <object class="GtkBox" id="view-stack_photo">
+                <property name="name">view-stack_photo</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
@@ -144,8 +145,8 @@
                 </child>
               </object>
               <packing>
-                <property name="name">page1</property>
-                <property name="title" translatable="yes">page1</property>
+                <property name="name">view-stack_photo</property>
+                <property name="title" translatable="yes">view-stack_photo</property>
                 <property name="position">1</property>
               </packing>
             </child>

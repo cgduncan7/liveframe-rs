@@ -1,38 +1,36 @@
 use gdk_pixbuf::{Pixbuf, Colorspace};
 use glib::{Bytes, clone};
 use gtk::prelude::*;
-use url::Url;
 
-// TODO: make reusable
+#[path = "../network/mod.rs"] mod network;
+
+mod popover;
+mod viewstack;
+
 fn setup_menu_buttons(builder: &gtk::Builder) {
-  let view_stack: gtk::Stack = builder.get_object("view-stack").unwrap();
-  let popover: gtk::Popover = builder.get_object("popover-menu").unwrap();
-
   let window_btn: gtk::Button = builder.get_object("menubutton-window").unwrap();
-  window_btn.connect_clicked(clone!(@strong view_stack, @strong popover => move |_| {
-      view_stack.set_visible_child_name("page0");
-      popover.popdown();
+  window_btn.connect_clicked(clone!(@strong builder => move |_| {
+    viewstack::change_view_stack_child(&builder, viewstack::VIEW_STACK_WINDOW);
+    popover::change_popover_state(&builder, popover::PopoverState::Down)
   }));
 
   let photo_btn: gtk::Button = builder.get_object("menubutton-photo").unwrap();
-  photo_btn.connect_clicked(clone!(@strong view_stack, @strong popover => move |_| {
-      view_stack.set_visible_child_name("page1");
-      popover.popdown();
+  photo_btn.connect_clicked(clone!(@strong builder => move |_| {
+    viewstack::change_view_stack_child(&builder, viewstack::VIEW_STACK_PHOTO);
+    popover::change_popover_state(&builder, popover::PopoverState::Down)
   }));
 }
 
 // TODO: spawn task to do this every minute
 fn fetch_image(builder: &gtk::Builder) {
-  let photo_box: gtk::Box = builder.get_object("photo-box").unwrap();
-  let url: Url = match Url::parse("http://home.collinduncan.com:54321/images/window.jpg") {
-    Ok(url) => url,
-    Err(_) => panic!("error parsing url for photo")
-  };
+  let photo_box: gtk::Box = builder.get_object(viewstack::VIEW_STACK_PHOTO).unwrap();
 
-  let bytes = reqwest::blocking::Client::new()
-    .get(url)
-    .send().unwrap()
-    .bytes().unwrap();
+  let result = network::perform_request(reqwest::Method::GET, "http://home.collinduncan.com:54321/images/window.jpg");
+
+  let bytes = match result {
+    Ok(resp) => resp.bytes().unwrap(),
+    Err(_) => panic!("error with network request")
+  };
     
   // TODO: clean this shit up
   let cursor = std::io::Cursor::new(bytes);
